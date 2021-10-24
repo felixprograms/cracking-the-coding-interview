@@ -268,3 +268,22 @@ def perm_palindrome(string):
 
 print(perm_palindrome("tact coa") == True)
 print(perm_palindrome("leelmadam") == True)
+
+#problem 1.6
+
+def string_compression(uncompressed_string):
+    compressed_string = ''
+    count = 1
+    last_letter = ''
+    for letter in uncompressed_string:
+        if last_letter != letter:
+            if last_letter != '':
+                compressed_string += last_letter + str(count)
+            last_letter = letter
+            count = 1    
+        else:
+            count += 1
+    compressed_string += last_letter + str(count)
+    return compressed_string
+
+print(string_compression('aabcccccaaa'))
