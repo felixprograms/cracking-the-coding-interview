@@ -10,6 +10,7 @@
 # #         else:
 # #             letters[letter] = True
 # #     return True# 3
+
 # # # 1. create an empty dictionary
 # # # 2. iterate over each letter of the string
 # # # 2.1 check if the letter 
@@ -107,6 +108,7 @@
 # print(check_permutation2('abc', 'bca') == True)
 # print(check_permutation2('aabc', 'abbc') == False)
 
+
 def oneaway(string1, string2):
     first_set = set(string1)
     second_set = set(string2)
@@ -160,3 +162,109 @@ print(oneaway2('pale', 'pales'))
 print(oneaway2('pale', 'bale'))
 print(oneaway2('pale', 'bake'))
 print(oneaway2('paake', 'baake'))
+
+#problem1.1
+
+def is_unique(string):
+    dictionary = {}
+    for letter in string:
+        if letter in dictionary:
+            return False
+        else:
+            dictionary[letter] = 1
+    return True
+
+
+# compare 'a' to 'b', 'c', 'd'
+# compare 'b' to 'c', 'd'
+# compare 'c' to 'd'
+
+
+def is_unique2(string):
+    for i in range(len(string)):
+        for j in range(i + 1, len(string)):
+            if string[i] == string[j]:
+                return False
+    return True           
+
+print('problem 1.1')
+print(is_unique2('abc') == True)
+print(is_unique2('aabc') == False)
+print(is_unique2('Aabc') == True)
+
+def check_permutation(string1, string2):
+    a = list(string1)
+    b = list(string2)
+    a.sort()
+    b.sort()
+    return a == b
+print('problem 1.2')
+print(check_permutation('abc', 'bca') == True)
+print(check_permutation('aabc', 'abbc') == False)
+
+#print(check_permutation2('abc', 'bca') == True)
+#print(check_permutation2('aabc', 'abbc') == False)        
+
+
+# 1.8
+
+# def zero_matrix(arr1, arr2):
+#     pass
+
+# argument = [
+#     [2,5,8,0,1],
+#     [6,8,1,2,4],
+#     [2,8,3,2,5]
+# ]
+# result = [
+#     [0,0,0,0,0],
+#     [6,8,1,0,4],
+#     [2,8,3,0,5]
+# ]
+
+# print(zero_matrix(argument) == result)
+def remove_spaces(string):
+    if string =='':
+        return ''
+    if string[0] == ' ':
+        return remove_spaces(string[1:])
+    elif string[-1] == ' ':
+        return remove_spaces(string[:-1])
+    else:
+        return string
+
+def urlify2(string):
+    string = remove_spaces(string)
+    new_string = ''
+
+    for letter in string:
+        if letter == ' ':
+            new_string += '%20'
+        else:
+            new_string += letter
+    return new_string        
+
+
+print(urlify2("Mr John Smith") == "Mr%20John%20Smith")
+print(urlify2("  Mr John Smith   ") == "Mr%20John%20Smith")
+
+
+def perm_palindrome(string):
+    dictionary = {}
+    for letter in string:
+        if letter == ' ':
+            continue
+        if letter in dictionary:
+            dictionary[letter] += 1
+        else:
+            dictionary[letter] = 1
+    count = 0
+    for letter in dictionary.values():
+        if letter % 2 != 0:
+            count += 1
+    return count <= 1
+
+
+
+print(perm_palindrome("tact coa") == True)
+print(perm_palindrome("leelmadam") == True)
