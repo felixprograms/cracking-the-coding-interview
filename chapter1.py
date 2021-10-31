@@ -287,3 +287,41 @@ def string_compression(uncompressed_string):
     return compressed_string
 
 print(string_compression('aabcccccaaa'))
+
+#problem 1.7
+
+def rotate_matrix(matrix):
+    rotated_matrix = []
+    for element in matrix:
+        rotated_matrix.append([None for x in range(len(element))])
+
+    for y in range(len(matrix)):
+        for x in range(len(matrix[y])):
+            rotated_matrix[y][x] = matrix[len(matrix) - 1 - x][y]
+            
+    return rotated_matrix
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+original_indices = [
+    [[0,0], [0,1], [0,2]],
+    [[1,0], [1,1], [1,2]],
+    [[2,0], [2,1], [2,2]]
+]
+rotated_matrix = [
+    [7, 4, 1],
+    [8, 5, 2],
+    [9, 6, 3]
+]
+
+rotated_indices = [
+    [[2,0], [1,0], [0,0]],
+    [[2,1], [1,1], [0,1]],
+    [[2,2], [1,2], [0,2]]
+]
+
+print(rotate_matrix(matrix))
+print(rotate_matrix(matrix) == rotated_matrix) 
